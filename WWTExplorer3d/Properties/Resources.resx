@@ -1873,4 +1873,19 @@ WorldWide Telescope 5.0 or above.&lt;/TextObject&gt;
   <data name="target2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\target2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PropertiesBackground_MOD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\propertiesbackground_mod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnendpushed_mod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnendpushed_mod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnendrest_mod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnendrest_mod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnstartpushed_mod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnstartpushed_mod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnstartrest_mod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnstartrest_mod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

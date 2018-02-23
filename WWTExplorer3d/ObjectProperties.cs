@@ -34,7 +34,7 @@ namespace TerraViewer
             this.transitLabel.Text = Language.GetLocalizedText(275, "Transit:");
             this.imageCreditsText.Text = Language.GetLocalizedText(276, "Image Credits:");
             this.TileBarText.Text = Language.GetLocalizedText(277, "Finder Scope");
-            this.ShowObject.Text = Language.GetLocalizedText(278, "Show object");
+            //this.ShowObject.Text = Language.GetLocalizedText(278, "Fly-to");
             this.CloseButton.Text = Language.GetLocalizedText(212, "Close");
             this.research.Text = Language.GetLocalizedText(279, "Research");
         }
