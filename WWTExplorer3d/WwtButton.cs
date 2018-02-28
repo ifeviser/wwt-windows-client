@@ -12,16 +12,26 @@ namespace TerraViewer
 
     public partial class WwtButton : UserControl, IButtonControl
     {
-        Bitmap btnStartRest = global::TerraViewer.Properties.Resources.BtnStartRest;
-        Bitmap btnStartHover = global::TerraViewer.Properties.Resources.BtnStartHover;
-        Bitmap btnStartPressed = global::TerraViewer.Properties.Resources.BtnStartPushed;
-        Bitmap btnStartDisabled = global::TerraViewer.Properties.Resources.BtnStartDisabled;
+		//Bitmap btnStartRest = global::TerraViewer.Properties.Resources.BtnStartRest;
+		Bitmap btnStartRest = global::TerraViewer.Properties.Resources.btnstartrest_mod;
+
+		Bitmap btnStartHover = global::TerraViewer.Properties.Resources.BtnStartHover;
+
+		//Bitmap btnStartPressed = global::TerraViewer.Properties.Resources.BtnStartPushed;
+		Bitmap btnStartPressed = global::TerraViewer.Properties.Resources.btnstartpushed_mod;
+
+		Bitmap btnStartDisabled = global::TerraViewer.Properties.Resources.BtnStartDisabled;
         Bitmap btnStartSelected = global::TerraViewer.Properties.Resources.BtnStartSelected;
 
-        Bitmap btnEndRest = global::TerraViewer.Properties.Resources.BtnEndRest;
-        Bitmap btnEndHover = global::TerraViewer.Properties.Resources.BtnEndHover;
-        Bitmap btnEndPressed = global::TerraViewer.Properties.Resources.BtnEndPushed;
-        Bitmap btnEndDisabled = global::TerraViewer.Properties.Resources.BtnEndDisabled;
+		//Bitmap btnEndRest = global::TerraViewer.Properties.Resources.BtnEndRest;
+		Bitmap btnEndRest = global::TerraViewer.Properties.Resources.btnendrest_mod;
+
+		Bitmap btnEndHover = global::TerraViewer.Properties.Resources.BtnEndHover;
+
+		//Bitmap btnEndPressed = global::TerraViewer.Properties.Resources.BtnEndPushed;
+		Bitmap btnEndPressed = global::TerraViewer.Properties.Resources.btnendpushed_mod;
+
+		Bitmap btnEndDisabled = global::TerraViewer.Properties.Resources.BtnEndDisabled;
         Bitmap btnEndSelected = global::TerraViewer.Properties.Resources.BtnEndSelected;
 
         public WwtButton()

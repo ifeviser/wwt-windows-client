@@ -2244,10 +2244,14 @@ namespace TerraViewer
             if (NoUi)
             {
                 this.menuTabs.IsVisible = false;
-                Properties.Settings.Default.ShowTouchControls = true;
-                ShowFullScreen(true);
+				// QUT edit
+				Properties.Settings.Default.ShowTouchControls = false;
+				Properties.Settings.Default.ShowCrosshairs = false;
+				Properties.Settings.Default.SolarSystemMultiRes = true;
+				Properties.Settings.Default.SolarSystemLighting = false;
+				ShowFullScreen(true);
             }
-
+			
             Tile.GrayscaleStyle = Properties.Settings.Default.MonochromeImageStyle;
 
 
@@ -2587,7 +2591,7 @@ namespace TerraViewer
 
         private void ShowContextPanel()
         {
-            try
+			try
             {
                 if (ProjectorServer || NoUi)
                 {
@@ -2896,7 +2900,9 @@ namespace TerraViewer
                 {
                     if (LayerManager.CheckForTourLoadedLayers())
                     {
-                        if (UiTools.ShowMessageBox(Language.GetLocalizedText(1004, "Close layers loaded with the tour as well?"), Language.GetLocalizedText(3, "Microsoft WorldWide Telescope"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+						LayerManager.CloseAllTourLoadedLayers();
+						/*
+						if (UiTools.ShowMessageBox(Language.GetLocalizedText(1004, "Close layers loaded with the tour as well?"), Language.GetLocalizedText(3, "Microsoft WorldWide Telescope"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                         {
                             LayerManager.CloseAllTourLoadedLayers();
                         }
@@ -2905,9 +2911,9 @@ namespace TerraViewer
                             tourEdit.Tour.DontCleanUpTempFiles = true;
                             LayerManager.CleanAllTourLoadedLayers();
                         }
+						*/
 
-
-                    }
+					}
                 }
                 tourEdit.Tour.CurrentTourstopIndex = -1;
                 tourEdit.Tour.CleanUp();
@@ -11790,7 +11796,8 @@ namespace TerraViewer
 
 
         public static bool TouchKiosk = false;
-        public static bool NoUi = false;
+		// QUT Edit
+        public static bool NoUi = true;
 
         public static bool DomeViewer = false;
         static bool DumpShaders = false;

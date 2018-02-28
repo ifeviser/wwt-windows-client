@@ -36,7 +36,10 @@ namespace TerraViewer
 
         public static void OpenUrl(string url, bool external)
         {
-            if (Earth3d.TouchKiosk)
+			// QUT Edit - no external URLS
+			return;
+
+			if (Earth3d.TouchKiosk)
             {
                 return;
             }
