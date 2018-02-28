@@ -13754,6 +13754,21 @@ namespace TerraViewer
             RotateView(-amount / 100, 0);
         }
 
+        public void Zoom(double amount)
+        {
+            this.TargetZoom += amount;
+            if (this.TargetZoom < ZoomMin)
+                this.TargetZoom = ZoomMin;
+            else if (this.TargetZoom > ZoomMax)
+                this.TargetZoom = ZoomMax;
+
+            if (!smoothZoom)
+            {
+                ZoomFactor = TargetZoom;
+            }
+            this.ComputeViewParameters(CurrentImageSet);
+        }
+
         public void ZoomIn(double amount)
         {
             if (this.TargetZoom > this.ZoomFactor)
@@ -13764,7 +13779,8 @@ namespace TerraViewer
 
             if (this.TargetZoom > ZoomMin)
             {
-                this.TargetZoom /= 1 + GetNetzoom(amount);
+                amount = GetNetzoom(amount);
+                this.TargetZoom /= 1 + amount;
 
                 if (!smoothZoom)
                 {
@@ -13787,9 +13803,10 @@ namespace TerraViewer
                 return;
             }
 
-            if ((this.TargetZoom * GetNetzoom(amount)) <= ZoomMax)
+            amount = GetNetzoom(amount);
+            if ((this.TargetZoom * amount) <= ZoomMax)
             {
-                this.TargetZoom *= GetNetzoom(amount);
+                this.TargetZoom *= amount;
                 if (!smoothZoom)
                 {
                     ZoomFactor = TargetZoom;
