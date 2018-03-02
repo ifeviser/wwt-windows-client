@@ -220,11 +220,11 @@ namespace TerraViewer
 
             set
             {
-                queueProgress = value;
+                //queueProgress = value;
                 if (queueProgressBar.Value != value)
                 {
-                    queueProgressBar.Value = value;
-                    queueProgressBar.Invalidate();
+                    //queueProgressBar.Value = value;
+                    //queueProgressBar.Invalidate();
                 }
 
             }
@@ -233,12 +233,13 @@ namespace TerraViewer
         bool autoRestore = false;
         private void searchTimer_Tick(object sender, EventArgs e)
         {
-            bool space = Earth3d.MainWindow.Space;
+            
+		bool space = Earth3d.MainWindow.Space;
             studyOpacity.Value = (int)Earth3d.MainWindow.StudyOpacity;
             UpdateVisibility(space);
 
             Rectangle rect = this.RectangleToScreen(this.ClientRectangle);
-            bool inside = rect.Contains(Cursor.Position) || Earth3d.TouchKiosk || !(TourPlayer.Playing || Earth3d.FullScreen || Properties.Settings.Default.AutoHideContext);
+			bool inside = false; // rect.Contains(Cursor.Position) || Earth3d.TouchKiosk || !(TourPlayer.Playing || Earth3d.FullScreen || Properties.Settings.Default.AutoHideContext);
 
             if (inside != fader.TargetState)
             {
@@ -255,19 +256,19 @@ namespace TerraViewer
 
             if (contextAreaChanged && cornersLast != null && !String.IsNullOrEmpty(constellation) && !Earth3d.MainWindow.SolarSystemMode && !Settings.DomeView)
             {
-                RunQuery();
+                //RunQuery();
 
                 contextAreaChanged = false;
             }
             else if (contextAreaChanged && Earth3d.MainWindow.SolarSystemMode)
             {
-                RunQuerySolarSystem();
+                //RunQuerySolarSystem();
                 contextAreaChanged = false;
             }
             else if (contextAreaChanged && Earth3d.MainWindow.CurrentImageSet.DataSetType == ImageSetType.Panorama)
             {
 
-                FillPanoramaList();
+                //FillPanoramaList();
                 contextAreaChanged = false;
             }
             else if ((cornersLast == null || String.IsNullOrEmpty(constellation)) && !Earth3d.MainWindow.SolarSystemMode && Earth3d.MainWindow.CurrentImageSet.DataSetType != ImageSetType.Panorama)
@@ -315,7 +316,7 @@ namespace TerraViewer
             }
           
 
-            contextResults.Invalidate();    
+            //contextResults.Invalidate();    
         }
 
         void AddChildern(Folder folder)
@@ -372,7 +373,7 @@ namespace TerraViewer
             }
             else
             {
-                this.PushPin.Visible = false;
+				/*this.PushPin.Visible = false;
                 this.closeBox.Visible = false;
                 this.levelLabel.Visible = true;
                 this.ConstellationLabel.Visible = true;
@@ -388,29 +389,45 @@ namespace TerraViewer
                 this.layerToggle.Visible = true;
                 this.trackingText.Visible = true;
                 this.trackingTarget.Visible = true;
-                this.info.Visible = true;
+                this.info.Visible = true;*/
 
+				this.PushPin.Visible = false;
+				this.closeBox.Visible = false;
+				this.levelLabel.Visible = false;
+				this.ConstellationLabel.Visible = false;
+				this.queueProgressBar.Visible = false;
+				this.label1.Visible = false;
+				this.label2.Visible = false;
+				this.label3.Visible = false;
+				this.viewTarget.Visible = false;
+				this.ImageDataSetsCombo.Visible = false;
+				this.FilterCombo.Visible = false;
+				this.paginator1.Visible = false;
+				this.SkyBall.Visible = false;
+				this.layerToggle.Visible = false;
+				this.trackingText.Visible = false;
+				this.trackingTarget.Visible = false;
+				this.info.Visible = false;
 
-
-                Timeline.Visible = false;
+				Timeline.Visible = false;
 
 
 
                 bool solarSystem = Earth3d.MainWindow.SolarSystemMode;
-                studyOpacity.Visible = (Earth3d.MainWindow.StudyImageset != null);
-                trackingTarget.Visible = (state != WindowsStates.StatusOnly) && solarSystem;
-                contextResults.Visible = state != WindowsStates.StatusOnly;
+				studyOpacity.Visible = false;// (Earth3d.MainWindow.StudyImageset != null);
+				trackingTarget.Visible = false;// (state != WindowsStates.StatusOnly) && solarSystem;
+				contextResults.Visible = false;// state != WindowsStates.StatusOnly;
 
-                actualSizeLabel.Visible = solarSystem;
-                bigSizeLabel.Visible = solarSystem;
-                solarSystemScaleTrackbar.Visible = solarSystem;
-                scaleText.Visible = solarSystem;
+				actualSizeLabel.Visible = false;//solarSystem;
+				bigSizeLabel.Visible = false;// solarSystem;
+				solarSystemScaleTrackbar.Visible = false;// solarSystem;
+				scaleText.Visible = false;// solarSystem;
 
                 if (solarSystem)
                 {
                     if (solarSystemScaleTrackbar.Value != Settings.Active.SolarSystemScale)
                     {
-                        solarSystemScaleTrackbar.Value = Settings.Active.SolarSystemScale;
+                        //solarSystemScaleTrackbar.Value = Settings.Active.SolarSystemScale;
                     }
                 }
 
@@ -420,19 +437,19 @@ namespace TerraViewer
                     if (SkyBall.ShowSkyball)
                     {
                         SkyBall.ShowSkyball = false;
-                        SkyBall.RefreshHint();
+                        //SkyBall.RefreshHint();
                     }
                 }
                 else
                 {
-                    SkyBall.ShowSkyball = state != WindowsStates.StatusOnly;
+					SkyBall.ShowSkyball = false; // state != WindowsStates.StatusOnly;
                     //SkyBall.ShowSkyball = space && state != WindowsStates.StatusOnly;
                 }
-                overview.Visible = (state != WindowsStates.StatusOnly) && !(solarSystem || !space);
+				overview.Visible = false;// (state != WindowsStates.StatusOnly) && !(solarSystem || !space);
 
                 if (Earth3d.MainWindow.Tracking && (Earth3d.MainWindow.Space))
                 {
-                    trackingLabel.Visible = true;
+					trackingLabel.Visible = false; // true;
                     if (lastTracking != Earth3d.MainWindow.TrackingObject.Name)
                     {
                         trackingText.Text = Earth3d.MainWindow.TrackingObject.Name.Substring(0, Math.Min(40, Earth3d.MainWindow.TrackingObject.Name.Length));
@@ -441,18 +458,18 @@ namespace TerraViewer
                 }
                 else if (Earth3d.MainWindow.SolarSystemMode)
                 {
-                    trackingLabel.Visible = true;
+					trackingLabel.Visible = false;// true;
                     if (Earth3d.MainWindow.TrackingObject != null && lastTracking != Earth3d.MainWindow.TrackingObject.Name)
                     {
                         trackingText.Text = Earth3d.MainWindow.TrackingObject.Name;
                         lastTracking = trackingText.Text;
                         trackingTarget.Items.Clear();
                         trackingTarget.Items.Add(Earth3d.MainWindow.TrackingObject);
-                        trackingTarget.Invalidate();
+                        //trackingTarget.Invalidate();
                     }
                     if (contextResults.Count == 0)
                     {
-                        RunQuerySolarSystem();
+                        //RunQuerySolarSystem();
                         contextAreaChanged = false;
                     }
                 }
@@ -489,7 +506,7 @@ namespace TerraViewer
                 {
                     contextResults.AddRange(results);
                 }
-                contextResults.Invalidate();
+                //contextResults.Invalidate();
             }
         }
         private void RunQuery()
@@ -521,7 +538,7 @@ namespace TerraViewer
                 {
                     contextResults.AddRange(results);
                 }
-                contextResults.Invalidate();
+                //contextResults.Invalidate();
                 //paginator1.CurrentPage = 0;
                 //paginator1.TotalPages = contextResults.PageCount;
             }
@@ -551,7 +568,7 @@ namespace TerraViewer
                 contextResults.AddRange(results);
             }
 
-            contextResults.Invalidate();           
+            //contextResults.Invalidate();           
         }
 
         private void ContextPanel_Load(object sender, EventArgs e)
@@ -845,7 +862,8 @@ namespace TerraViewer
 
         private void SetWindowState(WindowsStates newState)
         {
-            int diff=0;
+			return;
+			int diff=0;
 
             switch (newState)
             {
@@ -874,8 +892,8 @@ namespace TerraViewer
             state = newState;
             SkyBall.Space = Earth3d.MainWindow.Space;
             SkyBall.ShowSkyball = SkyBall.Space && state != WindowsStates.StatusOnly;
-            SkyBall.RefreshHint();
-            contextResults.Invalidate();
+            //SkyBall.RefreshHint();
+            //contextResults.Invalidate();
         }
 
 
@@ -897,7 +915,7 @@ namespace TerraViewer
                 SetWindowState(WindowsStates.OneLine);
              
             }
-            contextResults.Invalidate();
+            //contextResults.Invalidate();
             paginator1.TotalPages = contextResults.PageCount;
 
             Earth3d.MainWindow.SetAppMode();
@@ -939,7 +957,8 @@ namespace TerraViewer
 
         private void ContextPanel_Paint(object sender, PaintEventArgs e)
         {
-            Pen p = new Pen(Color.FromArgb(71, 84, 108));
+			return;
+			Pen p = new Pen(Color.FromArgb(71, 84, 108));
             //e.Graphics.Clear(this.BackColor);
           //  e.Graphics.Clear(Color.Red);
             
@@ -963,8 +982,10 @@ namespace TerraViewer
 
         private void FadeTimer_Tick(object sender, EventArgs e)
         {
+			this.Visible = false;
+			return;
 
-            SetOpacity();
+			SetOpacity();
 
 
             if ((!fader.TargetState && fader.Opacity == 0.0) || (fader.TargetState && fader.Opacity == 1.0))

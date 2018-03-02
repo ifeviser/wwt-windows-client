@@ -2233,7 +2233,7 @@ namespace TerraViewer
                 NetControl.LoadNodeList();
             }
 
-            if (Earth3d.TouchKiosk)
+			if (Earth3d.TouchKiosk)
             {
                 this.menuTabs.IsVisible = false;
                 this.kioskTitleBar.Visible = true;
@@ -2241,16 +2241,19 @@ namespace TerraViewer
                 ShowFullScreen(true);
             }
 
-            if (NoUi)
-            {
-                this.menuTabs.IsVisible = false;
-				// QUT edit
-				Properties.Settings.Default.ShowTouchControls = false;
-				Properties.Settings.Default.ShowCrosshairs = false;
-				Properties.Settings.Default.SolarSystemMultiRes = true;
-				Properties.Settings.Default.SolarSystemLighting = false;
-				ShowFullScreen(true);
-            }
+			if (NoUi)
+				;
+
+            this.menuTabs.IsVisible = false;
+			Properties.Settings.Default.TranparentWindows = false;
+			// QUT edit
+			Properties.Settings.Default.ShowTouchControls = false;
+			Properties.Settings.Default.ShowCrosshairs = false;
+			Properties.Settings.Default.ShowLayerManager = false;
+			Properties.Settings.Default.SolarSystemMultiRes = true;
+			Properties.Settings.Default.SolarSystemLighting = false;
+			ShowFullScreen(true);
+            
 			
             Tile.GrayscaleStyle = Properties.Settings.Default.MonochromeImageStyle;
 
@@ -2969,8 +2972,8 @@ namespace TerraViewer
                         {
                             if (toursTab != null)
                             {
-                                toursTab.Hide();
-                            }
+								toursTab.Hide();
+							}
                         }
                         break;
                     case ApplicationMode.Explore:
@@ -2978,7 +2981,7 @@ namespace TerraViewer
                             if (explorePane != null)
                             {
                                 explorePane.Hide();
-                            }
+							}
                         }
                         break;
                     case ApplicationMode.Community:
@@ -3042,7 +3045,7 @@ namespace TerraViewer
                             toursTab.Owner = this;
                             loadTours = true;
                         }
-                        ShowPane(toursTab);
+                        //ShowPane(toursTab);
 
                     }
                     break;
@@ -3070,7 +3073,7 @@ namespace TerraViewer
                             viewPane = new View();
                             viewPane.Owner = this;
                         }
-                        ShowPane(viewPane);
+                        //ShowPane(viewPane);
                     }
                     break;
                 case ApplicationMode.Settings:
@@ -3103,7 +3106,8 @@ namespace TerraViewer
                             explorePane.LoadRootFoder(explorerRoot);
                             explorePane.Owner = this;
                         }
-                        ShowPane(explorePane);
+						//explorePane.Hide();
+                        //ShowPane(explorePane);
                     }
                     break;
                 case ApplicationMode.Search:
@@ -3113,7 +3117,7 @@ namespace TerraViewer
                             searchPane = new Search();
                             searchPane.Owner = this;
                         }
-                        ShowPane(searchPane);
+                        //ShowPane(searchPane);
                     }
 
                     break;
@@ -3140,7 +3144,7 @@ namespace TerraViewer
                             {
                                 tourEdit.Tour = menuTabs.CurrentTour;
                             }
-                            ShowPane(tourEdit);
+                            //ShowPane(tourEdit);
 
                             if (tourEdit.Tour.EditMode && !TourPlayer.Playing)
                             {
@@ -3175,7 +3179,8 @@ namespace TerraViewer
 
             if (currentTab != null)
             {
-                currentTab.SetOpacity();
+				currentTab.Visible = false;
+				currentTab.SetOpacity();
             }
 
             if (loadTours)
@@ -9111,7 +9116,7 @@ namespace TerraViewer
 
             if (contextPanel != null)
             {
-                contextPanel.QueueProgress = TileCache.QueuePercent;
+                //contextPanel.QueueProgress = TileCache.QueuePercent;
             }
 
             TileCache.InitNextWaitingTile();
@@ -9207,7 +9212,7 @@ namespace TerraViewer
             if (contextPanel != null)
             {
 
-                contextPanel.QueueProgress = TileCache.QueuePercent;
+                //contextPanel.QueueProgress = TileCache.QueuePercent;
 
                 if (Space)
                 {
@@ -11796,8 +11801,7 @@ namespace TerraViewer
 
 
         public static bool TouchKiosk = false;
-		// QUT Edit
-        public static bool NoUi = true;
+        public static bool NoUi = false;
 
         public static bool DomeViewer = false;
         static bool DumpShaders = false;
@@ -15008,7 +15012,7 @@ namespace TerraViewer
 
         void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            contextPanel.QueueProgress = e.ProgressPercentage;
+            //contextPanel.QueueProgress = e.ProgressPercentage;
 
         }
 
@@ -15401,7 +15405,8 @@ namespace TerraViewer
 
         private void HoverTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan ts = DateTime.Now - lastMouseMove;
+			return;
+			TimeSpan ts = DateTime.Now - lastMouseMove;
 
             if (mouseMoved && ts.TotalMilliseconds > 500)
             {
@@ -15630,7 +15635,7 @@ namespace TerraViewer
             {
                 editMode = true;
             }
-
+			editMode = false;
 
             Undo.Clear();
             LayerManager.TourLayers = !editMode;
@@ -15645,7 +15650,7 @@ namespace TerraViewer
                 this.menuTabs.AddTour(tour);
                 this.menuTabs.FocusTour(tour);
 
-                if (NoUi)
+                if (true) //NoUi)
                 {
                     if (tourEdit == null)
                     {
@@ -15656,6 +15661,7 @@ namespace TerraViewer
 
 
                     Properties.Settings.Default.AutoRepeatTour = true;
+					Properties.Settings.Default.AutoRepeatTourAll = true;
                     tourEdit.PlayNow(true);
 
                 }

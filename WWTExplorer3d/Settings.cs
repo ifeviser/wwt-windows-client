@@ -49,7 +49,7 @@ namespace TerraViewer
 
             }
         }
-        static bool masterController = false;
+        static bool masterController = true;
         public static bool MasterController
         {
             get
