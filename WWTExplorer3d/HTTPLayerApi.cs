@@ -36,6 +36,9 @@ namespace TerraViewer
             return request.ToLower().StartsWith(_sig);
         }
 
+        float cmdVal = 0;
+        char[] cmdDelimeters = new char[] { '|' };
+        string[] cmdSplitParts;
         static Dictionary<string, ScriptableProperty> SettingsList;
 
         static HTTPLayerApi()
@@ -873,58 +876,100 @@ namespace TerraViewer
                                     }
                                 }
                             }
-
                             else
                             {
-                                switch (move)
+                                var errorResponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><LayerApi><Status>Error - Invalid parameter</Status></LayerApi>";
+
+                                // Check for extended move commands
+                                if (move.IndexOfAny(cmdDelimeters) > 0)
                                 {
-                                    case "ZoomIn":
-                                        Earth3d.MainWindow.ZoomIn();
-                                        break;
-                                    case "ZoomOut":
-                                        Earth3d.MainWindow.ZoomOut();
-                                        break;
-                                    case "Up":
-                                        Earth3d.MainWindow.MoveUp();
-                                        break;
-                                    case "Down":
-                                        Earth3d.MainWindow.MoveDown();
-                                        break;
-                                    case "Left":
-                                        Earth3d.MainWindow.MoveLeft();
-                                        break;
-                                    case "Right":
-                                        Earth3d.MainWindow.MoveRight();
-                                        break;
-                                    case "Clockwise":
-                                        Earth3d.MainWindow.RotateView(0, .2);
-                                        break;
-                                    case "CounterClockwise":
-                                        Earth3d.MainWindow.RotateView(0, -.2);
-                                        break;
-                                    case "TiltUp":
-                                        Earth3d.MainWindow.RotateView(-.2, 0);
-                                        break;
-                                    case "TiltDown":
-                                        Earth3d.MainWindow.RotateView(.2, 0);
-                                        break;
-                                    case "Finder":
-                                        break;
-                                    case "Play":
-                                        ((IScriptable)Earth3d.MainWindow).InvokeAction("PlayTour", "");
-                                        break;
-                                    case "Pause":
-                                        ((IScriptable)Earth3d.MainWindow).InvokeAction("PauseTour", "");
-                                        break;
-                                    case "PreviousSlide":
-                                        ((IScriptable)Earth3d.MainWindow).InvokeAction("PreviousSlide", "");
-                                        break;
-                                    case "NextSlide":
-                                        ((IScriptable)Earth3d.MainWindow).InvokeAction("NextSlide", "");
-                                        break;
-                                    default:
-                                        data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><LayerApi><Status>Error - Invalid parameter</Status></LayerApi>";
-                                        break;
+                                    cmdVal = 0;
+                                    cmdSplitParts = move.Split(cmdDelimeters);
+                                    move = cmdSplitParts[0];
+
+                                    if (cmdSplitParts.Length > 0)
+                                        float.TryParse(cmdSplitParts[1], out cmdVal);
+
+                                    switch (move.ToLower())
+                                    {
+                                        case "zm":
+                                            Earth3d.MainWindow.ZoomView(cmdVal);
+                                            break;
+
+                                        case "y":
+                                            Earth3d.MainWindow.MoveView(0, cmdVal, false);
+                                            break;
+
+                                        case "x":
+                                            Earth3d.MainWindow.MoveView(cmdVal, 0, false);
+                                            break;
+
+                                        case "z":
+                                            Earth3d.MainWindow.RotateView(0, cmdVal);
+                                            break;
+
+                                        case "t":
+                                            Earth3d.MainWindow.RotateView(cmdVal, 0);
+                                            break;
+
+                                        default:
+                                            data = errorResponse;
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    switch (move.ToLower())
+                                    {
+                                        case "zoomin":
+                                            Earth3d.MainWindow.ZoomIn();
+                                            break;
+                                        case "zoomout":
+                                            Earth3d.MainWindow.ZoomOut();
+                                            break;
+                                        case "up":
+                                            Earth3d.MainWindow.MoveUp();
+                                            break;
+                                        case "down":
+                                            Earth3d.MainWindow.MoveDown();
+                                            break;
+                                        case "left":
+                                            Earth3d.MainWindow.MoveLeft();
+                                            break;
+                                        case "right":
+                                            Earth3d.MainWindow.MoveRight();
+                                            break;
+                                        case "clockwise":
+                                            Earth3d.MainWindow.RotateView(0, .2);
+                                            break;
+                                        case "counterclockwise":
+                                            Earth3d.MainWindow.RotateView(0, -.2);
+                                            break;
+                                        case "tiltup":
+                                            Earth3d.MainWindow.RotateView(-.2, 0);
+                                            break;
+                                        case "tiltdown":
+                                            Earth3d.MainWindow.RotateView(.2, 0);
+                                            break;
+
+                                        case "finder":
+                                            break;
+                                        case "play":
+                                            ((IScriptable)Earth3d.MainWindow).InvokeAction("PlayTour", "");
+                                            break;
+                                        case "pause":
+                                            ((IScriptable)Earth3d.MainWindow).InvokeAction("PauseTour", "");
+                                            break;
+                                        case "previousslide":
+                                            ((IScriptable)Earth3d.MainWindow).InvokeAction("PreviousSlide", "");
+                                            break;
+                                        case "nextslide":
+                                            ((IScriptable)Earth3d.MainWindow).InvokeAction("NextSlide", "");
+                                            break;
+                                        default:
+                                            data = errorResponse;
+                                            break;
+                                    }
                                 }
                             }
                         }
