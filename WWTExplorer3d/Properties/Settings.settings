@@ -12,13 +12,13 @@
       <Value Profile="(Default)">DarkGoldenrod</Value>
     </Setting>
     <Setting Name="ShowConstellationBoundries" Type="TerraViewer.BlendState" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ShowConstellationFigures" Type="TerraViewer.BlendState" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ShowConstellationSelection" Type="TerraViewer.BlendState" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ShowClouds" Type="TerraViewer.BlendState" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -306,7 +306,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FullScreenTours" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="MinZoonLimitSolar" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">1E-06</Value>

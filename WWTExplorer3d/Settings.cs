@@ -143,7 +143,7 @@ namespace TerraViewer
 
         public bool ShowConstellationSelection
         {
-            get { return Properties.Settings.Default.ShowConstellationSelection.TargetState; }
+            get { return false; } // Properties.Settings.Default.ShowConstellationSelection.TargetState; }
             set { Properties.Settings.Default.ShowConstellationSelection.TargetState = value; }
         }
 

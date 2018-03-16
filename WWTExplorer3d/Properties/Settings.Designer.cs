@@ -61,7 +61,7 @@ namespace TerraViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public global::TerraViewer.BlendState ShowConstellationBoundries {
             get {
                 return ((global::TerraViewer.BlendState)(this["ShowConstellationBoundries"]));
@@ -85,7 +85,7 @@ namespace TerraViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public global::TerraViewer.BlendState ShowConstellationSelection {
             get {
                 return ((global::TerraViewer.BlendState)(this["ShowConstellationSelection"]));
@@ -1229,10 +1229,10 @@ namespace TerraViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool FullScreenTours {
             get {
-                return ((bool)(this["FullScreenTours"]));
+				return false;  //((bool)(this["FullScreenTours"]));
             }
             set {
                 this["FullScreenTours"] = value;

@@ -573,7 +573,7 @@ namespace TerraViewer
             {
                 return;
             }
-            Properties.Settings.Default.FullScreenTours = FullScreenTours.Checked;
+			Properties.Settings.Default.FullScreenTours = false;// FullScreenTours.Checked;
 
         }
 

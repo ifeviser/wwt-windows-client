@@ -1370,7 +1370,7 @@ namespace TerraViewer
         MainMenu holder = null;
         string mainWindowText = Language.GetLocalizedText(3, "Microsoft WorldWide Telescope");
 
-        public static bool HideSplash = false;
+        public static bool HideSplash = true;
         public Earth3d()
         {
           
@@ -2200,7 +2200,7 @@ namespace TerraViewer
 
 
 
-            this.FormBorderStyle = TouchKiosk ? FormBorderStyle.None : FormBorderStyle.Sizable;
+			this.FormBorderStyle = FormBorderStyle.None; // TouchKiosk ? FormBorderStyle.None : FormBorderStyle.Sizable;
             TileCache.StartQueue();
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
@@ -2252,10 +2252,11 @@ namespace TerraViewer
 			Properties.Settings.Default.ShowLayerManager = false;
 			Properties.Settings.Default.SolarSystemMultiRes = true;
 			Properties.Settings.Default.SolarSystemLighting = false;
-			ShowFullScreen(true);
-            
-			
-            Tile.GrayscaleStyle = Properties.Settings.Default.MonochromeImageStyle;
+			//UiTools.ShowFullScreen(renderWindow, false, -1);
+			//ShowFullScreen(true);
+
+
+			Tile.GrayscaleStyle = Properties.Settings.Default.MonochromeImageStyle;
 
 
 
@@ -2542,7 +2543,7 @@ namespace TerraViewer
             }
             else
             {
-                this.FormBorderStyle = TouchKiosk ? FormBorderStyle.None : FormBorderStyle.Sizable;
+				this.FormBorderStyle = FormBorderStyle.None;  //TouchKiosk ? FormBorderStyle.None : FormBorderStyle.Sizable;
             }
             if (showFull)
             {
@@ -2558,7 +2559,8 @@ namespace TerraViewer
             }
             fullScreen = showFull;
             this.ResumeLayout();
-            RenderContext11.Resize(renderWindow);
+
+			RenderContext11.Resize(renderWindow);
         }
 
 
@@ -16720,7 +16722,9 @@ namespace TerraViewer
 
         private void renderWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (activeTouch != TouchControls.None)
+			return;
+			
+			if (activeTouch != TouchControls.None)
             {
                 return;
             }
