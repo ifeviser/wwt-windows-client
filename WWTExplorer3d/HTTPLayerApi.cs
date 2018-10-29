@@ -1163,7 +1163,7 @@ namespace TerraViewer
 
                         MethodInvoker doIt = delegate
                         {
-                            Earth3d.MainWindow.GotoTarget(pl, false, false, true);
+                            Earth3d.MainWindow.GotoTarget(pl, false, instant, true);
                         };
 
                         if (Earth3d.MainWindow.InvokeRequired)
